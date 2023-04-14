@@ -52,8 +52,8 @@ def promedios_notas_estudiantes(dicci_notas):
     #retorno un diccionario combinando las listas de estudiantes y sus promedios
     return dict(zip(estudiantes, promedios))
 
-promedios = promedios_notas_estudiantes(dicci_notas)
-for estudiante, promedio in promedios.items():
+dicci_promedios = promedios_notas_estudiantes(dicci_notas)
+for estudiante, promedio in dicci_promedios.items():
     print(f"El promedio de notas de {estudiante} es: {promedio}")
 
 
