@@ -85,7 +85,7 @@ print("El promedio general del curso es: {:.2f}".format(promedio))
 estudiante_con_promedio_mas_alto = max(promedios, key=promedios.get)
 promedio_mas_alto = promedios[estudiante_con_promedio_mas_alto]
 
-print(f"La materia con el promedio más alto es {estudiante_con_promedio_mas_alto} con un promedio de {promedio_mas_alto}")
+print(f"El estudiante con el promedio más alto es {estudiante_con_promedio_mas_alto} con un promedio de {promedio_mas_alto}")
 
 
 #E. Identificar al estudiante con la nota más baja.
