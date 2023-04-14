@@ -1,3 +1,6 @@
+from functools import reduce
+
+
 nombres = ['Agustin', 'Alan', 'Andrés', 'Ariadna', 'Bautista', 'CAROLINA', 'CESAR',
            'David','Diego', 'Dolores', 'DYLAN', 'ELIANA', 'Emanuel', 'Fabián', 'Facundo',
            'Francsica', 'FEDERICO', 'Fernanda', 'GONZALO', 'Gregorio', 'Ignacio', 'Jonathan',
@@ -61,19 +64,17 @@ for estudiante, promedio in dicci_promedios.items():
 
 #C. Calcular el promedio general del curso.
 
-def promedio_general_curso(notas):
+def promedio_general_curso(dicci_notas):
     """
-    Calcula el promedio general del curso a partir de la estructura de notas
+    Calcula el promedio general del curso a partir de un diccionario de notas
     """
-    suma_notas = 0
-    total_estudiantes = len(notas)
-
-    for estudiante in notas:                # por cada estudiante voy sumando sus notas y guardando en una suma total 
-        suma_notas += sum(notas[estudiante])      
-
-    promedio = suma_notas / (total_estudiantes * 2)     #se multiplica *2 porque cada estudiante tiene 2 notas
-    return promedio
-
+    # Obtener los promedios de notas de cada estudiante utilizando la función promedio_notas_estudiante
+    promedios_estudiantes = map(promedio_notas_estudiante, dicci_notas.values())
+    
+    # Calcular el promedio general utilizando la función reduce y la función lambda para sumar los promedios
+    promedio_general = reduce(lambda x, y: x + y, promedios_estudiantes) / len(dicci_notas)
+    
+    return promedio_general
 
 promedio = promedio_general_curso(dicci_notas)
 print("----------------------")
@@ -82,8 +83,8 @@ print("El promedio general del curso es: {:.2f}".format(promedio))
 
 #D. Identificar al estudiante con la nota promedio más alta.
 
-estudiante_con_promedio_mas_alto = max(promedios, key=promedios.get)
-promedio_mas_alto = promedios[estudiante_con_promedio_mas_alto]
+estudiante_con_promedio_mas_alto = max(dicci_promedios, key=dicci_promedios.get)
+promedio_mas_alto = dicci_promedios[estudiante_con_promedio_mas_alto]
 
 print(f"El estudiante con el promedio más alto es {estudiante_con_promedio_mas_alto} con un promedio de {promedio_mas_alto}")
 
@@ -106,6 +107,7 @@ def estudiante_peor_nota(notas):
 print("----------------------")
 print(f"El estudiante con la nota mas baja es:{estudiante_peor_nota(dicci_notas)} ")
 print("----------------------")
+
 
 
 
